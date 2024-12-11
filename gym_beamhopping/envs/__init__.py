@@ -1,0 +1,1 @@
+from gym_beamhopping.envs.beamhopping_env import BeamHoppingEnv

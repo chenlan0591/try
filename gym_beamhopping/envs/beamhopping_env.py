@@ -227,7 +227,8 @@ class BeamHoppingEnv(gym.Env):
         for kk in range(n_cell):
             traffic_observation_[kk, 0] = poisson.rvs(self.arrival_rate_cell[kk]) * 1e6 * TS_duration
 
-        traffic_observation_ = traffic_observation_.reshape([1, n_cell * t_ttl])
+        traffic_observation_ = traffic_observation_.reshape(n_cell * t_ttl)
+        position_observation_ = np.array(position_observation_)
         observation_ = np.concatenate((position_observation_, traffic_observation_))
         self.states.append(observation_)
         self.render_states.append(self.states[-1])
@@ -250,8 +251,8 @@ class BeamHoppingEnv(gym.Env):
         traffic_observation = np.zeros([n_cell, t_ttl])  # traffic of each cell initially
         for kk in range(n_cell):
             traffic_observation[kk, 0] = poisson.rvs(self.arrival_rate_cell[kk]) * 1e6 * TS_duration
-        traffic_observation = traffic_observation.reshape([1, n_cell * t_ttl])
-        position_observation = S0_proj  # # initial projection point of satellite on earth
+        traffic_observation = traffic_observation.reshape(n_cell * t_ttl)
+        position_observation = np.array(S0_proj)  # # initial projection point of satellite on earth
         observation = np.concatenate((position_observation, traffic_observation))  # LEO projection position+traffic
         self.states.append(observation)
         self.render_states.append(self.states[-1])

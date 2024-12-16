@@ -165,7 +165,7 @@ class BeamHoppingEnv(gym.Env):
 
         # Calculate channel coefficient for picked cells
         for nn in range(n_beam):
-            location_picked_cell = location_cells[picked_cells[nn], :]
+            location_picked_cell = location_cells[picked_cells[nn]]
             distance_projection = norm(position_observation_ - location_picked_cell)
             distance_LoS[nn] = math.sqrt(distance_projection * distance_projection + d_S * d_S)
             path_loss[nn] = pow(4 * math.pi * distance_LoS[nn] / lambda_c, 2)

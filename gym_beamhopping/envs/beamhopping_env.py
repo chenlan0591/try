@@ -187,7 +187,10 @@ class BeamHoppingEnv(gym.Env):
                     end2 = resource_picked_cells[mm, 2]
                     overlap_fac = overlapping_factor(begin1, end1, begin2, end2)
                     interference += power_interference * h[mm] * overlap_fac
-            SINR[nn] = (power * h[nn]) / (noise_power * bandwidth + interference)
+            if bandwidth == 0:
+                SINR[nn] = 0
+            else:
+                SINR[nn] = (power * h[nn]) / (noise_power * bandwidth + interference)
             channel_cap[nn] = bandwidth * math.log2(1 + SINR[nn]) * TS_duration  # * TS_duration (bits)
 
             # Process data in the queue

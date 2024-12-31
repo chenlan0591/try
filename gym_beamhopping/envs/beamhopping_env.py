@@ -236,7 +236,7 @@ class BeamHoppingEnv(gym.Env):
         self.states.append(observation_)
         self.render_states.append(self.states[-1])
 
-        return observation_, reward, end_episode, {}
+        return observation_, reward, end_episode, sum(throughput), delay_fair
 
     # build initial states
     def reset(self):

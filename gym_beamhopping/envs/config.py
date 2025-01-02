@@ -16,7 +16,7 @@ noise_power = 6.92 * 1e-21  # N_0, -171.6 dBm/Hz
 t_ttl = 40  # T_ttl=40 TSs
 TS_per_episode = 500
 TS_duration = 0.02  # duration of each TS = 20 ms
-weight_factor = 0.5  # weight factor between throughput and delay fairness
+weight_factor = 1  # weight factor between throughput and delay fairness
 max_throughput = 1e8
 max_delay_fair = 20
 r_E = 6370 * 1e3  # radius of the earth
